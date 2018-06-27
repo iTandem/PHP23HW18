@@ -11,10 +11,9 @@
 
 namespace Symfony\Component\Routing\Tests\Annotation;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Annotation\Route;
 
-class RouteTest extends TestCase
+class RouteTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \BadMethodCallException
@@ -22,14 +21,6 @@ class RouteTest extends TestCase
     public function testInvalidRouteParameter()
     {
         $route = new Route(array('foo' => 'bar'));
-    }
-
-    /**
-     * @expectedException \BadMethodCallException
-     */
-    public function testTryingToSetLocalesDirectly()
-    {
-        $route = new Route(array('locales' => array('nl' => 'bar')));
     }
 
     /**
@@ -53,7 +44,6 @@ class RouteTest extends TestCase
             array('methods', array('GET', 'POST'), 'getMethods'),
             array('host', '{locale}.example.com', 'getHost'),
             array('condition', 'context.getMethod() == "GET"', 'getCondition'),
-            array('value', array('nl' => '/hier', 'en' => '/here'), 'getLocalizedPaths'),
         );
     }
 }
